@@ -38,12 +38,12 @@ HRESULT FindProcessesInSession(
         DWORD process_session = 0;
         if (!::ProcessIdToSessionId(process_ids[i], &process_session)) {
             hr = HRESULTFromLastError();
+            continue;
         }
 
         if (process_session == session_id) {
             TCHAR module_name[MAX_PATH];
             base::win::ScopedHandle process_handle(::OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, process_ids[i]));
-
             if (!::GetModuleFileNameEx(process_handle.Get(),
                 NULL,
                 module_name,
