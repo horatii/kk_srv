@@ -51,25 +51,37 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     securityAttr.bInheritHandle = FALSE;
     securityAttr.lpSecurityDescriptor = &secutity;
 
-    base::win::ScopedHandle hEvent(CreateEvent(&securityAttr, TRUE,  FALSE, event_name.c_str()));
-    WaitForSingleObject(hEvent.Get(), INFINITE);
+    // base::win::ScopedHandle hEvent(CreateEvent(&securityAttr, TRUE,  FALSE, event_name.c_str()));
+    // WaitForSingleObject(hEvent.Get(), INFINITE);
 
     HKEY current_user_key;
     RegOpenCurrentUser(KEY_READ, &current_user_key);
 
     base::win::RegKey reg_key(current_user_key, L"Software\\Test\\", KEY_READ);
     if (!reg_key.Valid()) {
-        LOG(WARNING) << "RegKey open key error.";
+        LOG(WARNING) << "RegOpenCurrentUser RegKey open key error.";
         return 0;
     }
 
     DWORD count = 0;
     if (reg_key.ReadValueDW(L"count", &count)) {
-        LOG(WARNING) << "RegKey read value key error.";
+        LOG(WARNING) << "RegOpenCurrentUser RegKey read value key error.";
+        return 0;
+    }    
+    LOG(INFO) << "RegOpenCurrentUser: count: " << count;
+    
+    base::win::RegKey reg_key2(HKEY_CURRENT_USER, L"Software\\Test\\", KEY_READ);
+    if (!reg_key2.Valid()) {
+        LOG(WARNING) << "HKEY_CURRENT_USER RegKey open key error.";
         return 0;
     }
-    
-    LOG(INFO) << "count: " << count;
+
+    count = 0;
+    if (reg_key2.ReadValueDW(L"count", &count)) {
+        LOG(WARNING) << "HKEY_CURRENT_USER RegKey read value key error.";
+        return 0;
+    }
+    LOG(INFO) << "HKEY_CURRENT_USER: count: " << count;
 
     return 0;
 }
