@@ -51,8 +51,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     securityAttr.bInheritHandle = FALSE;
     securityAttr.lpSecurityDescriptor = &secutity;
 
-    // base::win::ScopedHandle hEvent(CreateEvent(&securityAttr, TRUE,  FALSE, event_name.c_str()));
-    // WaitForSingleObject(hEvent.Get(), INFINITE);
+    /// base::win::ScopedHandle hEvent(CreateEvent(&securityAttr, TRUE,  FALSE, event_name.c_str()));
+    base::win::ScopedHandle hEvent(CreateEvent(NULL, TRUE, FALSE, event_name.c_str()));
+    WaitForSingleObject(hEvent.Get(), INFINITE);
 
     HKEY current_user_key;
     RegOpenCurrentUser(KEY_READ, &current_user_key);

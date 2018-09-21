@@ -22,6 +22,9 @@
 #include <base/process/launch.h>
 #include <base/synchronization/waitable_event.h>
 
+#include <atlbase.h>
+#include <atlsecurity.h>
+
 #pragma comment(lib, "Psapi.lib")
 #pragma comment(lib, "wtsapi32.lib")
 #pragma comment(lib, "shlwapi.lib")
@@ -68,13 +71,19 @@ public:
             LOG(WARNING) << "GetLoggedOnUserToken Failed.";
             return;
         }
+        HANDLE linked_token = nullptr;//GetLinkedToken(user_token);
 
         base::LaunchOptions opt;
         opt.wait = true;
-        opt.as_user = user_token;
+        opt.as_user = nullptr;// linked_token ? linked_token : user_token;
+
         base::CommandLine command_line(dir_exe.Append(L"wait.exe"));
         command_line.AppendSwitchNative("EventName", kEventName);
-        base::LaunchProcess(command_line, opt);        
+        base::LaunchProcess(command_line, opt);
+        if (linked_token) {
+            CloseHandle(linked_token);
+        }
+        CloseHandle(user_token);
     }
 };
 
@@ -104,7 +113,7 @@ public:
     }
 };
 
-class WinServiceDelegateImpl : public WinServiceDelegate
+class WinServiceDelegateImpl : public WinService::Delegate
 {
 public:
     WinServiceDelegateImpl()
@@ -139,7 +148,6 @@ public:
     {
         stop_event_.Signal();
     }
-
 
 private:
     HANDLE timer_queue_;    

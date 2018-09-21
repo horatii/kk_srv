@@ -199,3 +199,31 @@ HRESULT GetLoggedOnUserToken(HANDLE* token) {
 
     return S_OK;
 }
+
+HANDLE GetLinkedToken(HANDLE hToken)
+{
+    TOKEN_ELEVATION_TYPE ElevationType;
+    DWORD dwRequiredLength = 0;
+    if (!::GetTokenInformation(hToken, TokenElevationType, &ElevationType, sizeof(TOKEN_ELEVATION_TYPE), &dwRequiredLength)) {
+        return NULL;
+    }
+
+    HANDLE hLinkedToken = NULL;
+    TOKEN_LINKED_TOKEN LinkedToken = { 0 };
+    switch (ElevationType) {
+        // 获取非受限Token
+    case TokenElevationTypeLimited:
+        if (!::GetTokenInformation(hToken, TokenLinkedToken, (VOID*)
+            &LinkedToken, sizeof(TOKEN_LINKED_TOKEN), &dwRequiredLength)) {
+            hLinkedToken = NULL;
+        }
+        hLinkedToken = LinkedToken.LinkedToken;
+        break;
+    case TokenElevationTypeDefault:
+    case TokenElevationTypeFull:
+    default:
+        hLinkedToken = NULL;
+    }
+
+    return hLinkedToken;
+}

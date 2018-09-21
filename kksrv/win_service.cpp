@@ -6,7 +6,7 @@
 
 WinService* _winservice_pointer = nullptr;
 
-WinService::WinService(WinServiceDelegate* delegate) 
+WinService::WinService(Delegate* delegate) 
     : delegate_(delegate)
 {
     ZeroMemory(&status_, sizeof(SERVICE_STATUS));

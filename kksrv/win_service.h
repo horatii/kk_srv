@@ -3,21 +3,23 @@
 #include <base/strings/string16.h>
 
 
-class WinServiceDelegate
-{
-public:
-    virtual ~WinServiceDelegate() {}
-
-    virtual LPWSTR ServiceName() = 0;
-    virtual void Run() = 0;
-    virtual void OnShutdown() = 0;
-    virtual void OnStop() = 0;    
-};
 
 class WinService
 {
 public:
-    WinService(WinServiceDelegate* delegate);
+    class Delegate
+    {
+    public:
+        virtual ~Delegate() {}
+
+        virtual LPWSTR ServiceName() = 0;
+        virtual void Run() = 0;
+        virtual void OnShutdown() = 0;
+        virtual void OnStop() = 0;
+    };
+
+
+    WinService(Delegate* delegate);
     ~WinService();
 
     BOOL WinMain();
@@ -35,7 +37,7 @@ private:
     static void WINAPI _ServiceMain(DWORD dwArgc, LPWSTR *lpszArgv);
     static void WINAPI _ServiceCtrlHandler(DWORD dwControlt);
 
-    WinServiceDelegate*    delegate_;
+    Delegate*              delegate_;
     SERVICE_STATUS         status_;
     SERVICE_STATUS_HANDLE  status_handle_;
 };
