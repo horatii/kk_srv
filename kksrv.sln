@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "signal", "signal\signal.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kksrv_svhost", "kksrv_svhost\kksrv_svhost.vcxproj", "{8050DDA3-3591-41FA-9BF1-938A192F3E0F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "kksrv_basic", "kksrv_basic\kksrv_basic.vcxproj", "{9F267D7E-A5F9-4141-BE17-89769404EF0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{8050DDA3-3591-41FA-9BF1-938A192F3E0F}.Release|x64.Build.0 = Release|x64
 		{8050DDA3-3591-41FA-9BF1-938A192F3E0F}.Release|x86.ActiveCfg = Release|Win32
 		{8050DDA3-3591-41FA-9BF1-938A192F3E0F}.Release|x86.Build.0 = Release|Win32
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Debug|x64.ActiveCfg = Debug|x64
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Debug|x64.Build.0 = Debug|x64
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Debug|x86.ActiveCfg = Debug|Win32
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Debug|x86.Build.0 = Debug|Win32
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Release|x64.ActiveCfg = Release|x64
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Release|x64.Build.0 = Release|x64
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Release|x86.ActiveCfg = Release|Win32
+		{9F267D7E-A5F9-4141-BE17-89769404EF0A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

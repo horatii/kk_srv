@@ -36,7 +36,6 @@
 // Periodic timers must fire at intervals that are reasonable long so that
 // the callbacks do not queue up.
 
-#include "stdafx.h"
 #include "queue_timer.h"
 
 #include <base/logging.h>

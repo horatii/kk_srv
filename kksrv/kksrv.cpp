@@ -4,12 +4,9 @@
 #include "stdafx.h"
 #include "kksrv.h"
 
-#include "win_service.h"
-#include "queue_timer.h"
-#include "vista_util.h"
-
-#include <base/run_loop.h>
-#include <base/message_loop/message_loop.h>
+#include "../kksrv_basic/win_service.h"
+#include "../kksrv_basic/queue_timer.h"
+#include "../kksrv_basic/vista_util.h"
 
 #include <base/at_exit.h>
 #include <base/logging.h>

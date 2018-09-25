@@ -58,23 +58,23 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="generic.target.props" />
-    <Import Project="google.base.props" />
+    <Import Project="..\generic.target.props" />
+    <Import Project="..\google.base.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="generic.target.props" />
-    <Import Project="google.base.props" />
+    <Import Project="..\generic.target.props" />
+    <Import Project="..\google.base.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="generic.target.props" />
-    <Import Project="google.base.props" />
+    <Import Project="..\generic.target.props" />
+    <Import Project="..\google.base.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="generic.target.props" />
-    <Import Project="google.base.props" />
+    <Import Project="..\generic.target.props" />
+    <Import Project="..\google.base.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -150,18 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="kksrv.h" />
-    <ClInclude Include="queue_timer.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="vista_util.h" />
-    <ClInclude Include="win_service.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kksrv.cpp" />
-    <ClCompile Include="queue_timer.cc" />
-    <ClCompile Include="vista_util.cpp" />
-    <ClCompile Include="win_service.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -175,6 +169,11 @@
   <ItemGroup>
     <Image Include="kksrv.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\kksrv_basic\kksrv_basic.vcxproj">
+      <Project>{9f267d7e-a5f9-4141-be17-89769404ef0a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
