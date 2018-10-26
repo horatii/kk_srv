@@ -25,14 +25,14 @@ public:
 
     BOOL WinMain();
 
-    VOID SetServiceStatus(DWORD dwStatus);
+    void ServiceMain(DWORD dwArgc, LPWSTR *lpszArgv);    
 
 protected:
     void OnShutdown();
     void OnStop();
+    VOID SetServiceStatus(DWORD dwStatus);
 
 private:
-    void ServiceMain(DWORD dwArgc, LPWSTR *lpszArgv);
     void ServiceCtrlHandler(DWORD dwControl);
 
     static void WINAPI _ServiceMain(DWORD dwArgc, LPWSTR *lpszArgv);
